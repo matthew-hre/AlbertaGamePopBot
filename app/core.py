@@ -1,11 +1,12 @@
+import sys
 from traceback import print_tb
 from typing import cast
-import sys
 
 import discord
 
 from app.setup import bot
 from app.utils import try_dm
+
 
 @bot.event
 async def on_ready() -> None:

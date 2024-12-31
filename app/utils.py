@@ -1,5 +1,6 @@
-import discord
 from textwrap import shorten
+
+import discord
 
 Account = discord.User | discord.Member
 
