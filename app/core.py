@@ -1,19 +1,22 @@
+import sys
 from traceback import print_tb
 from typing import cast
-import sys
 
 import discord
 
 from app.setup import bot
 from app.utils import try_dm
 
+
 @bot.event
 async def on_ready() -> None:
     print(f"Bot logged on as {bot.user}!")
 
+
 @bot.event
 async def on_error(*_: object) -> None:
     handle_error(cast(BaseException, sys.exc_info()[1]))
+
 
 @bot.event
 async def on_message(message: discord.Message) -> None:

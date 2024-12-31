@@ -1,7 +1,9 @@
-import discord
 from textwrap import shorten
 
+import discord
+
 Account = discord.User | discord.Member
+
 
 async def try_dm(account: Account, content: str) -> None:
     if account.bot:
