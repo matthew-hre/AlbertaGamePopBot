@@ -12,9 +12,11 @@ from app.utils import try_dm
 async def on_ready() -> None:
     print(f"Bot logged on as {bot.user}!")
 
+
 @bot.event
 async def on_error(*_: object) -> None:
     handle_error(cast(BaseException, sys.exc_info()[1]))
+
 
 @bot.event
 async def on_message(message: discord.Message) -> None:
