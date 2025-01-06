@@ -2,3 +2,5 @@ __pycache__/
 .direnv/
 dist/
 .env
+*.db
+.vscode/
