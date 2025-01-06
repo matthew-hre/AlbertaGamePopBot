@@ -3,6 +3,7 @@ from app.features.suggestions import handle_theme_submission
 from app.db.database import SessionLocal
 from app.db.models import User
 
+
 class SuggestThemeModal(discord.ui.Modal, title="Suggest a Theme"):
     theme = discord.ui.TextInput(
         label="Theme Suggestion",
@@ -12,7 +13,9 @@ class SuggestThemeModal(discord.ui.Modal, title="Suggest a Theme"):
 
     async def on_submit(self, interaction: discord.Interaction) -> None:
         await interaction.response.defer(ephemeral=True, thinking=True)
-        response_message = await handle_theme_submission(interaction.user.id, self.theme.value)
+        response_message = await handle_theme_submission(
+            interaction.user.id, self.theme.value
+        )
         await interaction.edit_original_response(content=response_message)
 
 

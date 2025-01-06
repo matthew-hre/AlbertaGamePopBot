@@ -15,6 +15,7 @@ import app.config as config
 
 init_db()
 
+
 @bot.tree.command(name="suggest-theme", description="Suggest a theme for the game jam")
 async def suggest_theme(interaction: discord.Interaction):
     await interaction.response.send_message(
@@ -57,7 +58,7 @@ async def on_message(message: discord.Message) -> None:
 
 async def sync(bot: commands.Bot, message: discord.Message) -> None:
     """Syncs all global commands."""
-    if is_dm(message.author): # or not is_mod(message.author):
+    if is_dm(message.author):  # or not is_mod(message.author):
         return
 
     await bot.tree.sync()

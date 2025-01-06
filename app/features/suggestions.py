@@ -1,6 +1,7 @@
 from app.db.database import SessionLocal
 from app.db.models import User, Theme
 
+
 async def handle_theme_submission(user_id: int, theme_value: str) -> str:
     session = SessionLocal()
     try:
@@ -19,6 +20,7 @@ async def handle_theme_submission(user_id: int, theme_value: str) -> str:
         return f"An error occurred: {e}"
     finally:
         session.close()
+
 
 async def list_all_suggestions() -> str:
     session = SessionLocal()
