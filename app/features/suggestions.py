@@ -1,5 +1,5 @@
 from app.db.database import SessionLocal
-from app.db.models import User, Theme
+from app.db.models import Theme, User
 
 
 async def handle_theme_submission(user_id: int, theme_value: str) -> str:

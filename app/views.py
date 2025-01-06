@@ -1,7 +1,8 @@
 import discord
-from app.features.suggestions import handle_theme_submission
+
 from app.db.database import SessionLocal
 from app.db.models import User
+from app.features.suggestions import handle_theme_submission
 
 
 class SuggestThemeModal(discord.ui.Modal, title="Suggest a Theme"):

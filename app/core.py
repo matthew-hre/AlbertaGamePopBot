@@ -5,13 +5,12 @@ from typing import cast
 import discord
 from discord.ext import commands
 
-from app.db.database import init_db
-from app.setup import bot
-from app.utils import is_dm, is_mod, try_dm
-from app.views import SuggestThemeView
-from app.features.suggestions import list_all_suggestions
-
 import app.config as config
+from app.db.database import init_db
+from app.features.suggestions import list_all_suggestions
+from app.setup import bot
+from app.utils import is_dm, try_dm
+from app.views import SuggestThemeView
 
 init_db()
 
