@@ -1,7 +1,5 @@
 import discord
 
-from app.db.database import SessionLocal
-from app.db.models import User, Theme
 from app.features.suggestions import handle_theme_submission
 
 
@@ -26,4 +24,3 @@ class SuggestThemeView(discord.ui.View):
         self, interaction: discord.Interaction, button: discord.ui.Button
     ):
         await interaction.response.send_modal(SuggestThemeModal())
-
