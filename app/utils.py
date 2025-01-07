@@ -1,5 +1,5 @@
-from textwrap import shorten
 import random
+from textwrap import shorten
 
 import discord
 from typing_extensions import TypeIs
@@ -35,7 +35,9 @@ def is_mod(member: discord.Member) -> bool:
 
 def get_random_theme(user_id: int) -> Theme | None:
     session = SessionLocal()
-    voted_theme_ids = session.query(VotedTheme.theme_id).filter(VotedTheme.user_id == user_id).all()
+    voted_theme_ids = (
+        session.query(VotedTheme.theme_id).filter(VotedTheme.user_id == user_id).all()
+    )
     voted_theme_ids = [theme_id for (theme_id,) in voted_theme_ids]
     themes = session.query(Theme).filter(Theme.theme_id.notin_(voted_theme_ids)).all()
     if not themes:
