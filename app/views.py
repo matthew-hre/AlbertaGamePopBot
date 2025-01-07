@@ -1,7 +1,7 @@
 import discord
 
 from app.db.database import SessionLocal
-from app.db.models import User
+from app.db.models import User, Theme
 from app.features.suggestions import handle_theme_submission
 
 
@@ -25,14 +25,5 @@ class SuggestThemeView(discord.ui.View):
     async def read_rules(
         self, interaction: discord.Interaction, button: discord.ui.Button
     ):
-        session = SessionLocal()
-        user = session.query(User).filter(User.user_id == interaction.user.id).first()
-        if not user:
-            user = User(user_id=interaction.user.id, read_rules=True)
-            session.add(user)
-        else:
-            user.read_rules = True
-        session.commit()
-        session.close()
-
         await interaction.response.send_modal(SuggestThemeModal())
+
