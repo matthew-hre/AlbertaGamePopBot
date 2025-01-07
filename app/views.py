@@ -1,7 +1,7 @@
 import discord
 
 from app.features.suggestions import handle_theme_submission
-
+from app.features.slaughter import start_slaughter
 
 class SuggestThemeModal(discord.ui.Modal, title="Suggest a Theme"):
     theme = discord.ui.TextInput(
@@ -24,3 +24,9 @@ class SuggestThemeView(discord.ui.View):
         self, interaction: discord.Interaction, button: discord.ui.Button
     ):
         await interaction.response.send_modal(SuggestThemeModal())
+
+class SlaughterRulesView(discord.ui.View):
+    @discord.ui.button(label="Accept Rules")
+    async def accept_rules(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.edit_message(content="You have accepted the rules. Starting slaughter...", view=None)
+        await start_slaughter(interaction.user)
