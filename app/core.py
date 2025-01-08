@@ -11,7 +11,7 @@ from app.db.models import Theme, User
 from app.features.suggestions import list_all_suggestions
 from app.setup import bot
 from app.utils import is_dm, try_dm
-from app.views import SuggestThemeModal, SuggestThemeView
+from app.views import SlaughterRulesView, SuggestThemeModal, SuggestThemeView
 
 init_db()
 
@@ -106,6 +106,19 @@ async def delete_user(interaction: discord.Interaction, who: discord.User):
         response_message = f"User {user_id} deleted."
     session.close()
     await interaction.response.send_message(response_message, ephemeral=True)
+
+
+@bot.tree.command(name="slaughter", description="Begin the theme slaughter")
+async def slaughter(interaction: discord.Interaction):
+    dm_message = await try_dm(
+        interaction.user,
+        "Here are the rules of the theme slaughter. Please read and accept them to proceed.",
+    )
+    if dm_message:
+        await dm_message.edit(view=SlaughterRulesView())
+    await interaction.response.send_message(
+        "Check your DMs for the slaughter rules.", ephemeral=True
+    )
 
 
 @bot.event
