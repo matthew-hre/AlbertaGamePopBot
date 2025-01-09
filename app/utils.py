@@ -10,6 +10,10 @@ from app.db.models import Theme, VotedTheme
 
 Account = discord.User | discord.Member
 
+SERVER_ONLY = discord.app_commands.allowed_contexts(
+    guilds=True, dms=False, private_channels=False
+)
+
 
 async def try_dm(account: Account, content: str) -> discord.Message | None:
     if account.bot:
@@ -30,7 +34,7 @@ def is_dm(user: discord.User | discord.Member) -> TypeIs[discord.User]:
 
 
 def is_mod(member: discord.Member) -> bool:
-    return _has_role(member, config.MOD_ROLE_ID)
+    return _has_role(member, int(config.MOD_ROLE_ID))
 
 
 def get_random_theme(user_id: int) -> Theme | None:
